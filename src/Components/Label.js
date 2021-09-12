@@ -1,7 +1,8 @@
 import React from "react";
 
-export const Label = ({caption, ...props}) => {
+export const Label = ({caption}) => {
+    console.log(caption)
     return (
-        <span className="label" style={props}>{caption}</span>
+        <span className="label">{caption}</span>
     )
 };
