@@ -1,9 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 export const InputForm = () => {
+    const store = useSelector(store => store.change.content);
+
     function handleSubmit(event) {
         event.preventDefault();
-        console.log('clicked', event.target);
+        const path = event.target[0].value;
+        const newValue = event.target[1].value;
+        
     }
     return (
         <form onSubmit={handleSubmit}>
