@@ -1,8 +1,13 @@
-//this function should be recursive to handle nested "content"
 import React from "react";
-//import { ComponentCreator } from "./ComponentCreator";
+import { ComponentCreator } from "./ComponentCreator";
 
-export const Panel = (props) => {
-    return <div>Panel</div>
-    // props.map(prop=>ComponentFactory(prop));
+export const Panel = ({ style, content }) => {
+    return <div style={style}>
+        <span>Panel</span>
+        {Array.isArray(content) &&
+            content.map((el, i) => <div key={String(i)}>
+                {ComponentCreator(el)}
+            </div>)
+        }
+    </div>
 };

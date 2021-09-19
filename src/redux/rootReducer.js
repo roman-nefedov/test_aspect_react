@@ -1,4 +1,4 @@
 import { combineReducers } from "redux";
-import { change } from "./change";
+import { reducer } from "./reducer";
 
-export const rootReducer = combineReducers({change: change});
+export const rootReducer = combineReducers({ change: reducer });
