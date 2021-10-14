@@ -6,7 +6,7 @@ export const ComponentCreator = ({ type, props: { caption, height, width, visibl
     const style = {
         height: `${height}px`,
         width: `${width}px`,
-        visibility: `${visible}` ? 'visible' : 'hidden',
+        visibility: visible ? 'visible' : 'hidden',
     };
     if (type === 'panel') return Panel({ style, content });
     if (type === 'label') return Label({ caption, style });

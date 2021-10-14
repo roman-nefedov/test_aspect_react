@@ -1,4 +1,5 @@
 import { CHANGE } from './types';
+import { updateContent } from '../helpers/parser';
 const initialState = {
   content: [
     {
@@ -24,16 +25,70 @@ const initialState = {
         visible: true,
       },
     },
+    {
+      type: "panel",
+      props: {
+        width: 500,
+        height: 200,
+        visible: true,
+      },
+      content: [
+        {
+          type: "label",
+          props: {
+            caption: "test",
+            visible: true,
+          },
+        },
+        {
+          type: "label",
+          props: {
+            caption: "test",
+            visible: true,
+          },
+        },
+        {
+          type: "button",
+          props: {
+            width: 100,
+            height: 50,
+            visible: true,
+          },
+        }
+      ],
+    },
+    {
+      type: "label",
+      props: {
+        caption: "test",
+        visible: false,
+      },
+    },
+    {
+      type: "button",
+      props: {
+        width: 100,
+        height: 50,
+        visible: true,
+      },
+    },
   ],
 };
 
 export const reducer = (state = initialState, { type, path, newValue }) => {
   switch (type) {
     case CHANGE:
-      console.log(state);
-      return {
-        //TODO: необходимо преобразовать строковые path/value в валидный объект с последующим его добавлением в стейт
-        ...state, ...{ [path]: newValue }
+      try {
+        const newState = updateContent(state, path, newValue);
+        console.log({ ...state });
+        return {
+          ...state,
+          content: [...newState.content]
+        };
+      }
+      catch (err) {
+        console.log(err.message);
+        return state;
       }
     default:
       return state;
