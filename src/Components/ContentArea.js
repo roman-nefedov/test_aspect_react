@@ -8,11 +8,13 @@ export const ContentArea = () => {
 
     return (
         <div className="content">
-            {content.map((el, i) => (
-                <div key={String(i)}>
-                    {ComponentCreator(el)}
-                </div>
-            )
+            {content.map((el, i) => {
+                return (el.type)
+                    ? (<div key={String(i)}>
+                        {ComponentCreator(el)}
+                    </div>)
+                    : false;
+            }
             )}
         </div>
     )
