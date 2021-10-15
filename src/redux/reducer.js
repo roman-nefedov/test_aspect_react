@@ -1,5 +1,5 @@
 import { CHANGE } from './types';
-import { updateContent } from '../helpers/parser';
+import { updateContent } from '../helpers/updateContent';
 const initialState = {
   content: [
     {
@@ -80,9 +80,7 @@ export const reducer = (state = initialState, { type, path, newValue }) => {
     case CHANGE:
       try {
         const newState = updateContent(state, path, newValue);
-        console.log({ ...state });
         return {
-          ...state,
           content: [...newState.content]
         };
       }
